@@ -1,54 +1,55 @@
-#ifndef BINARY_TREES_H
-#define BINARY_TREES_H
+#ifndef _BINARY_TREES_H_
+#define _BINARY_TREES_H_
 
-#include <stdlib.h>
 #include <stddef.h>
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include <math.h>
-#include <limits.h>
 
-// Binary tree node structure
-struct binary_tree_s
+/**
+ * struct binary_tree_s - Binary tree node
+ *
+ * @n: Integer stored in the node
+ * @parent: Pointer to the parent node
+ * @left: Pointer to the left child node
+ * @right: Pointer to the right child node
+ */
+typedef struct binary_tree_s
 {
-    int n;
-    struct binary_tree_s *parent;
-    struct binary_tree_s *left;
-    struct binary_tree_s *right;
-};
-typedef struct binary_tree_s binary_tree_t;
+	int n;
+	struct binary_tree_s *parent;
+	struct binary_tree_s *left;
+	struct binary_tree_s *right;
+} binary_tree_t;
+
+void binary_tree_print(const binary_tree_t *);
 typedef struct binary_tree_s bst_t;
 typedef struct binary_tree_s avl_t;
 typedef struct binary_tree_s heap_t;
+
 /**
- * struct levelorder_queue_s - This is a queue used for level order traversal.
- * @node: This represents a node in a binary tree.
- * @next: This points to the next node in the binary tree to be traversed.
+ *struct QueueNode - for a node in a queue
+ *@treeNode: binary tree node pointer
+ *@next: pointer to next node 
+ *Description : reps node in a queue
  */
+
 struct QueueNode
 {
 	binary_tree_t *treeNode;
 	struct QueueNode *next;
 };
 /**
- * print_tree - Prints a binary tree
+ * struct Queue_t - queue structure
+ * @front: Pointer to the front of the queue
+ * @rear: Pointer to the rear of the queue
  *
- * Description: This function is used to print the structure of a binary tree
- * for visualization purposes. It is not part of the binary tree data structure
- * operations and is only used as a helper function for debugging and testing.
+ * Description: Structure that represents a queue
  */
-void binary_tree_print(const binary_tree_t *);
-/**
-i * Task Function Prototypes - This section contains prototypes for the functions
- * that will be implemented as part of the tasks in this project. Each prototype
- * should clearly state the purpose of the function and the parameters it takes.
- */
+
 typedef struct Queue_t
 {
 	struct QueueNode *front;
 	struct QueueNode *rear;
 } Queue_t;
+
 void binary_tree_print(const binary_tree_t *);
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
 binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value);
@@ -90,4 +91,5 @@ heap_t *heap_insert(heap_t **root, int value);
 heap_t *array_to_heap(int *array, size_t size);
 int heap_extract(heap_t **root);
 int *heap_to_sorted_array(heap_t *heap, size_t *size);
-#endif
+
+#endif /* _BINARY_TREES_H_ */
