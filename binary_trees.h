@@ -26,11 +26,11 @@ typedef struct binary_tree_s heap_t;
  * @node: This represents a node in a binary tree.
  * @next: This points to the next node in the binary tree to be traversed.
  */
-typedef struct levelorder_queue_s
+struct QueueNode
 {
-	binary_tree_t *node;
-	struct levelorder_queue_s *next;
-} levelorder_queue_t;
+	binary_tree_t *treeNode;
+	struct QueueNode *next;
+};
 /**
  * print_tree - Prints a binary tree
  *
@@ -40,10 +40,16 @@ typedef struct levelorder_queue_s
  */
 void binary_tree_print(const binary_tree_t *);
 /**
- * Task Function Prototypes - This section contains prototypes for the functions
+i * Task Function Prototypes - This section contains prototypes for the functions
  * that will be implemented as part of the tasks in this project. Each prototype
  * should clearly state the purpose of the function and the parameters it takes.
  */
+typedef struct Queue_t
+{
+	struct QueueNode *front;
+	struct QueueNode *rear;
+} Queue_t;
+void binary_tree_print(const binary_tree_t *);
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
 binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value);
 binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value);
@@ -63,8 +69,8 @@ int binary_tree_is_full(const binary_tree_t *tree);
 int binary_tree_is_perfect(const binary_tree_t *tree);
 binary_tree_t *binary_tree_sibling(binary_tree_t *node);
 binary_tree_t *binary_tree_uncle(binary_tree_t *node);
-binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
-		const binary_tree_t *second);
+binary_tree_t *
+binary_trees_ancestor(const binary_tree_t *first, const binary_tree_t *second);
 void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int));
 int binary_tree_is_complete(const binary_tree_t *tree);
 binary_tree_t *binary_tree_rotate_left(binary_tree_t *tree);
